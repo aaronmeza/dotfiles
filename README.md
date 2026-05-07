@@ -5,8 +5,6 @@ Personal configs and global CLI tools that I want available on any machine I wor
 ## Layout
 
 ```
-bin/                  # executables symlinked into ~/bin
-etc/                  # config files read by tools in bin/
 bazecor/              # Dygma Raise keyboard layer exports (Layer0-2.json)
 ```
 
@@ -14,29 +12,17 @@ bazecor/              # Dygma Raise keyboard layer exports (Layer0-2.json)
 
 ```bash
 git clone https://github.com/aaronmeza/dotfiles.git ~/personal/dotfiles
-mkdir -p ~/bin
-ln -sf ~/personal/dotfiles/bin/bmad-update-all ~/bin/bmad-update-all
 ```
 
-Then make sure `~/bin` is on `PATH` (`echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc`).
+Make sure `~/bin` is on `PATH` (`echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc`) when you start adding tools that symlink into it.
 
 ## What's here
 
-### `bin/bmad-update-all`
-
-Runs `bmad-method@next` quick-update across every repo under `~/crown`, `~/personal`, `~/confelicity` that has a `_bmad/` directory.
-
-```bash
-bmad-update-all              # update in place
-bmad-update-all --dry-run    # list installs + versions
-bmad-update-all --commit     # update, branch, PR, squash-merge per repo
-```
-
-Skip list lives at `etc/bmad-update-all.skip` — one repo path per line, relative to `$HOME`. Override with `BMAD_UPDATE_SKIP_FILE=/path` if needed.
+Currently just keyboard layouts. Personal CLI tools moved to [redwoods/scripts/](https://github.com/aaronmeza/redwoods/tree/main/scripts) - e.g. `bmad-update-all` now lives under `redwoods/scripts/bmad-update-all/`.
 
 ## What's NOT here
 
-Secrets. API tokens and per-service credentials live in `~/.secrets/<service>.env` (perms `700/600`), not in this repo. This repo is public.
+Secrets. API tokens and per-service credentials live outside the repo (a permissioned `<secrets-dir>/<service>.env` layout). This repo is public.
 
 ## Future additions
 
